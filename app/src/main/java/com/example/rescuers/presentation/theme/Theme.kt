@@ -1,4 +1,4 @@
-package com.example.rescuers.ui.theme
+package com.example.rescuers.presentation.theme
 
 import android.app.Activity
 import android.os.Build
