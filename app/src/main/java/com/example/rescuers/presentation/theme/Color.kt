@@ -1,4 +1,4 @@
-package com.example.rescuers.ui.theme
+package com.example.rescuers.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
