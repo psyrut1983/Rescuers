@@ -1,0 +1,56 @@
+package com.example.rescuers.data
+
+import com.example.rescuers.domain.Scout
+import com.example.rescuers.domain.ScoutRepository
+
+object ScoutRepositoryImpl : ScoutRepository {
+    private val scoutList = mutableListOf<Scout>()
+    private var autoIncrementId=0
+init {
+    for (i in 0 until 10) {
+        val scout = Scout("Name $i",
+            "family $i",
+            "hero $i",
+        false,
+        false)
+        addScout(scout)
+    }
+}
+
+
+    override fun addScout(scout: Scout) {
+        if (scout.id == Scout.UNDEFINED_ID) {
+        scout.id = autoIncrementId++
+        }
+        scoutList.add(scout)
+    }
+
+    override fun deleteScout(scout: Scout) {
+        scoutList.remove(scout)
+    }
+
+    override fun editScout(scout: Scout) {
+        val oldElement = getScout(scout.id)
+        scoutList.remove(oldElement)
+
+        addScout(scout)
+    }
+
+    override fun getScout(scoutId: Int): Scout {
+        return scoutList.find { it.id == scoutId
+        } ?: throw RuntimeException("Element with id:${scoutId} not found")
+    }
+
+    override fun getScoutList(): List<Scout> {
+        return scoutList.toList()
+    }
+
+    override fun createQr(scout: Scout) {
+        TODO("Not yet implemented")
+    }
+
+    override fun scanQr() {
+        TODO("Not yet implemented")
+    }
+
+}
