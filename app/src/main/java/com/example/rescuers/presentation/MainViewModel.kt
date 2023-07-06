@@ -17,22 +17,14 @@ class MainViewModel : ViewModel() {
     private val deleteScoutUseCase = DeleteScoutUseCase(repository)
     private val editScoutUseCase = EditScoutUseCase(repository)
 
-    val scoutList = MutableLiveData<List<Scout>>()
-
-    fun getScoutList() {
-        val list = getScoutListUseCase.getScoutList()
-        scoutList.value = list
-    }
+    val scoutList = getScoutListUseCase.getScoutList()
 
     fun deleteScout(scout: Scout) {
         deleteScoutUseCase.deleteScout(scout)
-        getScoutList()
-
     }
 
     fun changeHaveACarState(scout: Scout) {
         val newScout = scout.copy(haveACar = !scout.haveACar)
 editScoutUseCase.editScout(newScout)
-        getScoutList()
     }
 }

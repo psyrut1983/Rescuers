@@ -17,39 +17,37 @@ import com.example.rescuers.presentation.theme.RescuersTheme
 class MainActivity : ComponentActivity() {
 
     private lateinit var viewModel: MainViewModel
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-            viewModel.scoutList.observe(this){
-                Log.d("MainActivity",it.toString())
-            }
-            viewModel.getScoutList()
-            RescuersTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
+            viewModel.scoutList.observe(this) {
+
+
+
+
                 }
             }
+
+
+
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    RescuersTheme {
-        Greeting("Android")
+    @Composable
+    fun Greeting(name: String, modifier: Modifier = Modifier) {
+        Text(
+            text = "Hello $name!",
+            modifier = modifier
+        )
     }
-}
+
+    @Preview(showBackground = true)
+    @Composable
+    fun GreetingPreview() {
+        RescuersTheme {
+            Greeting("Android")
+        }
+    }
