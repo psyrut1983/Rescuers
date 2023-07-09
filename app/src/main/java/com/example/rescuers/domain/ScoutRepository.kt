@@ -9,5 +9,5 @@ interface ScoutRepository {
     fun getScout(scoutId: Int): Scout
     fun getScoutList(): LiveData<List<Scout>>
     fun createQr (scout: Scout)
-    fun scanQr()
+    fun scanQr(text:String)
 }

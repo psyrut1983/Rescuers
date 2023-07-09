@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import com.example.rescuers.domain.Scout
 import com.example.rescuers.domain.ScoutRepository
 
+
+
 object ScoutRepositoryImpl : ScoutRepository {
     private val scoutListLD = MutableLiveData<List<Scout>>()
     private val scoutList = mutableListOf<Scout>()
@@ -55,8 +57,8 @@ init {
         TODO("Not yet implemented")
     }
 
-    override fun scanQr() {
-        TODO("Not yet implemented")
+    override fun scanQr(text:String) {
+
     }
 
     private fun updateList(){

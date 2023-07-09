@@ -1,5 +1,6 @@
 package com.example.rescuers.presentation
 
+import androidx.compose.runtime.Composable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,12 +20,15 @@ class MainViewModel : ViewModel() {
 
     val scoutList = getScoutListUseCase.getScoutList()
 
+
+    @Composable
     fun deleteScout(scout: Scout) {
         deleteScoutUseCase.deleteScout(scout)
     }
 
+    @Composable
     fun changeHaveACarState(scout: Scout) {
         val newScout = scout.copy(haveACar = !scout.haveACar)
-editScoutUseCase.editScout(newScout)
+        editScoutUseCase.editScout(newScout)
     }
 }
