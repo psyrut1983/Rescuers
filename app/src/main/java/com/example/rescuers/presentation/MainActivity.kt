@@ -23,6 +23,8 @@ import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -127,8 +129,8 @@ fun Navigation() {
                       elevation = CardDefaults.cardElevation(5.dp)
                   ) {
                     Row() {
-                        Text(color = Color.Black, text = "Введите свое имя")
 
+                        OutlinedTextField()
 
                         }
 
@@ -179,4 +181,14 @@ navController.navigate("main_screen")
 
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun OutlinedTextField() {
+    var text by remember { mutableStateOf("") }
+    TextField(
+        value = text,
+        onValueChange = { text = it },
+        label = { Text("Label") }
+    )
+}
 
