@@ -8,6 +8,7 @@ import androidx.activity.compose.setContent
 
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,18 +19,23 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -41,6 +47,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.rescuers.R
 import kotlinx.coroutines.delay
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 
 class MainActivity : ComponentActivity() {
 
@@ -65,7 +76,8 @@ fun Navigation() {
         composable("splash_screen") {
             SplashScreen(navController = navController)
         }
-        
+
+        // Главный экран
         composable("main_screen") {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text(text = "Это заглушка. Тут будет экран регистрации.", color = Color.Black)
@@ -82,11 +94,11 @@ fun Navigation() {
                 ) {
                     Button(modifier = Modifier
                         .fillMaxWidth(0.5f)
-                        .padding(8.dp),
-                        shape = RoundedCornerShape(15.dp),
-                        elevation = ButtonDefaults.buttonElevation(5.dp),
-
-                        onClick = {navController.navigate("ScautRegistrationScreen") })
+                        .padding(8.dp)
+                        ,shape = RoundedCornerShape(15.dp)
+                        ,elevation = ButtonDefaults.buttonElevation(5.dp)
+                        ,colors = ButtonDefaults.buttonColors(MySquadBlueColor)
+                        ,onClick = {navController.navigate("ScautRegistrationScreen") })
                     {
                         Text(text = "Я Волонтер")
                     }
@@ -95,6 +107,7 @@ fun Navigation() {
                         .padding(8.dp),
                         shape = RoundedCornerShape(15.dp),
                         elevation = ButtonDefaults.buttonElevation(5.dp),
+                        colors = ButtonDefaults.buttonColors(MySquadBlueColor),
                         onClick = { /*TODO*/ }) {
                         Text(text = "Я администратор")
 
@@ -102,45 +115,27 @@ fun Navigation() {
                 }
             }
         }
+
+            // Экран волонтера
             composable("ScautRegistrationScreen"){
               Column(modifier = Modifier.fillMaxSize()) {
+                  Card(
+                      modifier = Modifier
+                          .fillMaxWidth()
+                          .padding(10.dp),
+                      shape = RoundedCornerShape(15.dp),
+                      elevation = CardDefaults.cardElevation(5.dp)
+                  ) {
+                    Row() {
+                        Text(color = Color.Black, text = "Введите свое имя")
 
-                  Card(
-                      modifier = Modifier
-                          .fillMaxWidth()
-                          .padding(10.dp),
-                      shape = RoundedCornerShape(15.dp),
-                      elevation = CardDefaults.cardElevation(5.dp)
-                  ) {
-                      Text(color = Color.Black, text = "Экран Ввода информации о волонтере")
+
+                        }
+
+                    }
+
                   }
-                  Card(
-                      modifier = Modifier
-                          .fillMaxWidth()
-                          .padding(10.dp),
-                      shape = RoundedCornerShape(15.dp),
-                      elevation = CardDefaults.cardElevation(5.dp)
-                  ) {
-                      Text(color = Color.Black, text = "Экран Ввода информации о волонтере")
-                  }
-                  Card(
-                      modifier = Modifier
-                          .fillMaxWidth()
-                          .padding(10.dp),
-                      shape = RoundedCornerShape(15.dp),
-                      elevation = CardDefaults.cardElevation(5.dp)
-                  ) {
-                      Text(color = Color.Black, text = "Экран Ввода информации о волонтере")
-                  }
-                  Card(
-                      modifier = Modifier
-                          .fillMaxWidth()
-                          .padding(10.dp),
-                      shape = RoundedCornerShape(15.dp),
-                      elevation = CardDefaults.cardElevation(5.dp)
-                  ) {
-                      Text(color = Color.Black, text = "Экран Ввода информации о волонтере")
-                  }
+
               }
             }
 
@@ -148,7 +143,7 @@ fun Navigation() {
 
         
     }
-}
+
 
 @Composable
 fun SplashScreen(navController: NavController){
@@ -172,7 +167,7 @@ navController.navigate("main_screen")
     Box(contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()){
         Image(
-            painter = painterResource(R.mipmap.ic_launcher_foreground),
+            painter = painterResource(R.mipmap.squadr_logo_foreground),
             contentScale = ContentScale.Crop,
 
             contentDescription = "Logo",

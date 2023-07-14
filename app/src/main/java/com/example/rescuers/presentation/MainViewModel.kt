@@ -19,16 +19,17 @@ class MainViewModel : ViewModel() {
     private val editScoutUseCase = EditScoutUseCase(repository)
 
     val scoutList = getScoutListUseCase.getScoutList()
-
-
-    @Composable
-    fun deleteScout(scout: Scout) {
-        deleteScoutUseCase.deleteScout(scout)
-    }
-
-    @Composable
-    fun changeHaveACarState(scout: Scout) {
-        val newScout = scout.copy(haveACar = !scout.haveACar)
-        editScoutUseCase.editScout(newScout)
-    }
 }
+
+
+//    @Composable
+//    fun deleteScout(scout: Scout) {
+//        deleteScoutUseCase.deleteScout(scout)
+//    }
+//
+//    @Composable
+//    fun changeHaveACarState(scout: Scout) {
+//        val newScout = scout.copy(haveACar = !scout.haveACar)
+//        editScoutUseCase.editScout(newScout)
+//    }
+//}
