@@ -28,6 +28,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
@@ -54,6 +55,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.sp
 
 class MainActivity : ComponentActivity() {
 
@@ -81,114 +83,29 @@ fun Navigation() {
 
         // Главный экран
         composable("main_screen") {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text(text = "Это заглушка. Тут будет экран регистрации.", color = Color.Black)
-            }
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.BottomCenter
-            )
-            {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.Bottom
+           mainScreen(navController = navController)
 
-                ) {
-                    Button(modifier = Modifier
-                        .fillMaxWidth(0.5f)
-                        .padding(8.dp)
-                        ,shape = RoundedCornerShape(15.dp)
-                        ,elevation = ButtonDefaults.buttonElevation(5.dp)
-                        ,colors = ButtonDefaults.buttonColors(MySquadBlueColor)
-                        ,onClick = {navController.navigate("ScautRegistrationScreen") })
-                    {
-                        Text(text = "Я Волонтер")
-                    }
-                    Button(modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp),
-                        shape = RoundedCornerShape(15.dp),
-                        elevation = ButtonDefaults.buttonElevation(5.dp),
-                        colors = ButtonDefaults.buttonColors(MySquadBlueColor),
-                        onClick = { /*TODO*/ }) {
-                        Text(text = "Я администратор")
-
-                    }
-                }
-            }
         }
-
             // Экран волонтера
-            composable("ScautRegistrationScreen"){
-              Column(modifier = Modifier.fillMaxSize()) {
-                  Card(
-                      modifier = Modifier
-                          .fillMaxWidth()
-                          .padding(10.dp),
-                      shape = RoundedCornerShape(15.dp),
-                      elevation = CardDefaults.cardElevation(5.dp)
-                  ) {
-                    Row() {
+            composable("ScautRegistrationScreen") {
+                ScautRegistrationScreen()
+            }
 
-                        OutlinedTextField()
+            composable("ManagerScreen") {
 
-                        }
-
-                    }
-
-                  }
-
-              }
             }
 
 
-
-        
     }
 
 
-@Composable
-fun SplashScreen(navController: NavController){
-    val scale = remember {
-        androidx.compose.animation.core.Animatable(0f)
-    }
-LaunchedEffect(key1 = true){
-    scale.animateTo(
-        targetValue = 1f,
-        animationSpec = tween(
-          durationMillis = 1000,
-          easing = {
-              OvershootInterpolator(2f).getInterpolation(it)
-          }
-        )
-    )
-    delay(3000L)
-navController.navigate("main_screen")
-}
 
-    Box(contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()){
-        Image(
-            painter = painterResource(R.mipmap.squadr_logo_foreground),
-            contentScale = ContentScale.Crop,
 
-            contentDescription = "Logo",
-            modifier = Modifier
-                .scale(scale.value)
-                .clip(CircleShape))
+
+
+
+
+
     }
 
-
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun OutlinedTextField() {
-    var text by remember { mutableStateOf("") }
-    TextField(
-        value = text,
-        onValueChange = { text = it },
-        label = { Text("Label") }
-    )
-}
 
