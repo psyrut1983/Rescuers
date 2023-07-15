@@ -61,7 +61,7 @@ fun ScautRegistrationScreen() {
     }
 
     var qrSetUpOnButtonClick = remember {
-        mutableStateOf(-1)
+        mutableStateOf(false)
     }
 
     Column(
@@ -86,12 +86,9 @@ fun ScautRegistrationScreen() {
             }
             Row() {
                 Button(
-                    onClick = {if (firstName.value != ""
-                        && lastName.value != ""
-                        && callSign.value!= ""){
+                    onClick = {
                         keyboardController?.hide()
-                        //!!!
-                        qrSetUpOnButtonClick.value = 1}
+                        qrSetUpOnButtonClick.value = true
 
                     },
                     modifier = Modifier
@@ -112,7 +109,7 @@ fun ScautRegistrationScreen() {
                 elevation = CardDefaults.cardElevation(5.dp)){
                 Box(modifier = Modifier.fillMaxSize(),
                     Alignment.Center){
-                  if (qrSetUpOnButtonClick.value == 1){
+                  if (qrSetUpOnButtonClick.value == true){
                     QrImageTest()}
                 }
 
