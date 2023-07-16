@@ -57,6 +57,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.sp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.rescuers.data.ScoutListClassModel
 
 class MainActivity : ComponentActivity() {
 
@@ -64,6 +65,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent() {
+
+
+
 
 Surface(color = Color.White, modifier = Modifier.fillMaxSize()) {
     Navigation()
@@ -94,7 +98,7 @@ fun Navigation() {
             }
 
             composable("ManagerScreen") {
-                ScoutItem()
+                managerScreen()
             }
 
 

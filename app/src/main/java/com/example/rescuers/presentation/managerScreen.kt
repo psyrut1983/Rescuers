@@ -1,12 +1,14 @@
 package com.example.rescuers.presentation
 
-import androidx.compose.foundation.layout.Box
+import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -14,122 +16,181 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.rescuers.data.ScoutListClass
-import kotlin.reflect.KClass
-
-val smirnov:ScoutListClass = ScoutListClass(" Максим ","Смирнов","скор")
-val kotov:ScoutListClass = ScoutListClass(" Владимир ","Котов","итсист")
-val romanova:ScoutListClass = ScoutListClass(" Виктория ","Романова","гигант")
-val jakovleva:ScoutListClass = ScoutListClass("Агата ","Яковлева","шахман")
-val holov:ScoutListClass = ScoutListClass(" Артём ","Хохлов","азан")
-val konstantinov:ScoutListClass = ScoutListClass(" Никита ","Константинов","Торн")
-val eremina:ScoutListClass = ScoutListClass(" Екатерина ","Еремина","хаммер")
-val goncharova:ScoutListClass = ScoutListClass(" Анастасия","Гончарова","Раскольников")
-val semenov:ScoutListClass = ScoutListClass(" Александр","Семенов","якер")
-val dmitrieva:ScoutListClass = ScoutListClass(" София ","Дмитриева","Хармонт")
+import com.example.rescuers.data.ScoutListClassModel
 
 
 
 
-val scoutListForExample = mutableListOf<ScoutListClass>(
-    smirnov,
-    kotov,
-    romanova,
-    jakovleva,
-    holov,
-    konstantinov,
-    eremina,
-    goncharova,
-    semenov,
-    dmitrieva
-   )
+
+
 
 
 
 
 @Preview
 @Composable
-fun mangerScreen() {
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
-        // for (0 until scoutListForExample.size)
+fun managerScreen() {
+    // это для показа тестового
+    val smirnov: ScoutListClassModel = ScoutListClassModel(" Максим ","Смирнов","скор")
+    val kotov: ScoutListClassModel = ScoutListClassModel(" Владимир ","Котов","итсист")
+    val romanova: ScoutListClassModel = ScoutListClassModel(" Виктория ","Романова","гигант")
+    val jakovleva: ScoutListClassModel = ScoutListClassModel("Агата ","Яковлева","шахман")
+    val holov: ScoutListClassModel = ScoutListClassModel(" Артём ","Хохлов","азан")
+    val konstantinov: ScoutListClassModel = ScoutListClassModel(" Никита ","Константинов","Торн")
+    val eremina: ScoutListClassModel = ScoutListClassModel(" Екатерина ","Еремина","хаммер")
+    val goncharova: ScoutListClassModel = ScoutListClassModel(" Анастасия","Гончарова","Раскольников")
+    val semenov: ScoutListClassModel = ScoutListClassModel(" Александр","Семенов","якер")
+    val dmitrieva: ScoutListClassModel = ScoutListClassModel(" София ","Дмитриева","Хармонт")
 
-    }
+    val scoutExampleList = mutableListOf<ScoutListClassModel>()
+    scoutExampleList.add(smirnov)
+    scoutExampleList.add(kotov)
+    scoutExampleList.add(romanova)
+    scoutExampleList.add(jakovleva)
+    scoutExampleList.add(holov)
+    scoutExampleList.add(konstantinov)
+    scoutExampleList.add(eremina)
+    scoutExampleList.add(goncharova)
+    scoutExampleList.add(semenov)
+    scoutExampleList.add(dmitrieva)
+
+   Column() {
+
+
+       Card(
+           modifier = Modifier
+               .fillMaxWidth()
+               .padding(10.dp),
+           shape = RoundedCornerShape(15.dp),
+           elevation = CardDefaults.cardElevation(5.dp),
+           colors = CardDefaults.cardColors(
+               containerColor = Color.White
+           )
+       ) {
+           Row() {
+               Button(
+                   modifier = Modifier
+                       .fillMaxWidth(0.5F)
+                       .padding(16.dp),
+                   onClick = { /*TODO*/ },
+                   colors = ButtonDefaults.buttonColors(MySquadBlueColor)
+               ) {
+                   Text(text = "Добавить")
+               }
+               Button(
+                   modifier = Modifier
+                       .fillMaxWidth()
+                       .padding(16.dp),
+                   onClick = { /*TODO*/ },
+                   colors = ButtonDefaults.buttonColors(MySquadBlueColor)
+               ) {
+                   Text(text = "Сканировать Qr")
+               }
+
+           }
+       }
+       Card(
+           modifier = Modifier
+               .fillMaxWidth()
+               .padding(10.dp),
+           shape = RoundedCornerShape(15.dp),
+           elevation = CardDefaults.cardElevation(5.dp),
+           colors = CardDefaults.cardColors(
+               containerColor = Color.White
+           )
+       ) {
+           LazyColumn(
+               modifier = Modifier
+                   .fillMaxSize()
+                   .background(Color.White)
+           ) {
+               items(scoutExampleList) { model ->
+                   ScoutItem(model = model)
+               }
+
+           }
+       }
+   }
 }
 
+
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview
 @Composable
-fun ScoutItem(firsName:String = "Иван", lastName:String = "Иванов", callSign:String = "Ворон"){
-    var itemClicked = remember {
+fun ScoutItem(model: ScoutListClassModel) {
+    val itemClicked = remember {
         mutableStateOf(false)
     }
 
-    Card (modifier = Modifier
-        .fillMaxWidth()
-        .padding(10.dp),
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp),
         shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.cardElevation(5.dp),
-        onClick = {itemClicked.value = !itemClicked.value},
+        onClick = { itemClicked.value = !itemClicked.value },
         colors = CardDefaults.cardColors(
-                containerColor = Color.White
+            containerColor = Color.White
         )
-            ) {
+    ) {
         Row() {
-            Text(text = firsName,
-                    fontSize = (20.sp),
-                    color = Color.DarkGray)
+            Text(
+                text = model.firstName,
+                fontSize = (20.sp),
+                color = Color.DarkGray
+            )
         }
         Row() {
-            Text(text = lastName,
+            Text(
+                text = model.lastName,
                 fontSize = (20.sp),
-                color = Color.DarkGray)
+                color = Color.DarkGray
+            )
         }
         Row() {
-            Text(text = callSign,
+            Text(
+                text = model.callSign,
                 fontSize = (20.sp),
-                color = Color.DarkGray)
+                color = Color.DarkGray
+            )
         }
 
-    if (itemClicked.value == true){
-buttonPanel()
+        if (itemClicked.value == true) {
+            buttonPanel()
 
+        }
     }
+
 }
-
-    }
 
 
 @Preview
 @Composable
-fun buttonPanel(){
+fun buttonPanel() {
     Row() {
-        Button(modifier = Modifier
-            .fillMaxWidth(0.5F)
-            .padding(16.dp),
+        Button(
+            modifier = Modifier
+                .fillMaxWidth(0.5F)
+                .padding(16.dp),
             onClick = { /*TODO*/ },
-        colors = ButtonDefaults.buttonColors(MySquadBlueColor)) {
+            colors = ButtonDefaults.buttonColors(MySquadBlueColor)
+        ) {
             Text(text = "Выдано:")
         }
-        Button(modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
             onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(MySquadBlueColor)) {
+            colors = ButtonDefaults.buttonColors(MySquadBlueColor)
+        ) {
             Text(text = "Выдать")
         }
 
