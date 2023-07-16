@@ -16,26 +16,28 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.rescuers.R
 import kotlinx.coroutines.delay
 
+
 @Composable
 fun SplashScreen(navController: NavController){
     val scale = remember {
-        Animatable(0f)
+        Animatable(1f)
     }
     LaunchedEffect(key1 = true){
         scale.animateTo(
-            targetValue = 1f,
+            targetValue = 0f,
             animationSpec = tween(
-                durationMillis = 1000,
+                durationMillis = 1200,
                 easing = {
                     OvershootInterpolator(2f).getInterpolation(it)
                 }
             )
         )
-        delay(3000L)
+        delay(1500L)
         navController.navigate("main_screen")
     }
 

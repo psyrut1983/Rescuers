@@ -7,9 +7,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.absolutePadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -73,6 +75,7 @@ fun ScautRegistrationScreen() {
                 .padding(10.dp),
             shape = RoundedCornerShape(15.dp),
             elevation = CardDefaults.cardElevation(5.dp),
+            colors = CardDefaults.cardColors(Color.White)
 
         ) {
             Row() {
@@ -105,8 +108,10 @@ fun ScautRegistrationScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(10.dp),
+
                 shape = RoundedCornerShape(15.dp),
-                elevation = CardDefaults.cardElevation(5.dp)){
+                elevation = CardDefaults.cardElevation(5.dp),
+                colors = CardDefaults.cardColors(Color.White)){
                 Box(modifier = Modifier.fillMaxSize(),
                     Alignment.Center){
                   if (qrSetUpOnButtonClick.value == true){
@@ -131,10 +136,15 @@ fun TextField(label: String, t:MutableState<String>) {
         onValueChange = {text = it},
         label = { Text(label) },
         textStyle = TextStyle(
-            fontSize = (30.sp),
+            fontSize = (20.sp),
             color = Color.DarkGray
         ),
-        colors = TextFieldDefaults.textFieldColors(),
+        colors = TextFieldDefaults.textFieldColors(
+            containerColor = Color.White
+        )
+
+
+
 
     )
     t.value = text
@@ -146,15 +156,14 @@ fun TextField(label: String, t:MutableState<String>) {
 @Preview
 @Composable
 fun QrImageTest(){
-
-
     Image(painter = painterResource(R.drawable.qr) ,
         contentDescription = "тестовый QR",
-
+        Modifier.size(150.dp)
         )
-
-
 }
+
+
+
 
 
 

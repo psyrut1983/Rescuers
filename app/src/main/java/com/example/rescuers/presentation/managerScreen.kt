@@ -14,6 +14,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -63,12 +64,11 @@ val scoutListForExample = mutableListOf<ScoutListClass>(
 
 @Preview
 @Composable
-fun mangerScreen(){
-  LazyColumn(modifier = Modifier.fillMaxSize()){
-      for (0 until scoutListForExample.size)
+fun mangerScreen() {
+    LazyColumn(modifier = Modifier.fillMaxSize()) {
+        // for (0 until scoutListForExample.size)
 
-  }
-
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -84,21 +84,24 @@ fun ScoutItem(firsName:String = "Иван", lastName:String = "Иванов", ca
         .padding(10.dp),
         shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.cardElevation(5.dp),
-        onClick = {itemClicked.value = !itemClicked.value}
+        onClick = {itemClicked.value = !itemClicked.value},
+        colors = CardDefaults.cardColors(
+                containerColor = Color.White
+        )
             ) {
         Row() {
             Text(text = firsName,
-                    fontSize = (30.sp),
+                    fontSize = (20.sp),
                     color = Color.DarkGray)
         }
         Row() {
             Text(text = lastName,
-                fontSize = (30.sp),
+                fontSize = (20.sp),
                 color = Color.DarkGray)
         }
         Row() {
             Text(text = callSign,
-                fontSize = (30.sp),
+                fontSize = (20.sp),
                 color = Color.DarkGray)
         }
 
