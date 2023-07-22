@@ -8,7 +8,7 @@ import com.example.rescuers.domain.ScoutRepository
 
 
 object ScoutRepositoryImpl : ScoutRepository {
-    private val scoutListLD = MutableLiveData<List<Scout>>()
+    private val scoutListID = MutableLiveData<List<Scout>>()
     private val scoutList = mutableListOf<Scout>()
     private var autoIncrementId=0
 
@@ -50,7 +50,7 @@ init {
     }
 
     override fun getScoutList(): LiveData<List<Scout>> {
-        return scoutListLD
+        return scoutListID
     }
 
     override fun createQr(scout: Scout) {
@@ -62,7 +62,7 @@ init {
     }
 
     private fun updateList(){
-        scoutListLD.value = scoutList.toList()
+        scoutListID.value = scoutList.toList()
     }
 
 }

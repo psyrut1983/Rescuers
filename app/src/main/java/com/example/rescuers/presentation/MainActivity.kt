@@ -98,8 +98,12 @@ fun Navigation() {
             }
 
             composable("ManagerScreen") {
-                managerScreen()
+                managerScreen(navController = navController)
             }
+
+        composable("QrCodeScannerScreen"){
+            QrCodeScannerScreen()
+        }
 
 
     }

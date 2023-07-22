@@ -24,31 +24,25 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.rescuers.data.ScoutListClassModel
+import com.example.rescuers.presentation.theme.MySquadBlueColor
 
 
 
-
-
-
-
-
-
-
-@Preview
 @Composable
-fun managerScreen() {
+fun managerScreen(navController: NavController) {
     // это для показа тестового
-    val smirnov: ScoutListClassModel = ScoutListClassModel(" Максим ","Смирнов","скор")
-    val kotov: ScoutListClassModel = ScoutListClassModel(" Владимир ","Котов","итсист")
-    val romanova: ScoutListClassModel = ScoutListClassModel(" Виктория ","Романова","гигант")
+    val smirnov: ScoutListClassModel = ScoutListClassModel("Максим ","Смирнов","скор")
+    val kotov: ScoutListClassModel = ScoutListClassModel("Владимир ","Котов","итсист")
+    val romanova: ScoutListClassModel = ScoutListClassModel("Виктория ","Романова","гигант")
     val jakovleva: ScoutListClassModel = ScoutListClassModel("Агата ","Яковлева","шахман")
-    val holov: ScoutListClassModel = ScoutListClassModel(" Артём ","Хохлов","азан")
-    val konstantinov: ScoutListClassModel = ScoutListClassModel(" Никита ","Константинов","Торн")
-    val eremina: ScoutListClassModel = ScoutListClassModel(" Екатерина ","Еремина","хаммер")
-    val goncharova: ScoutListClassModel = ScoutListClassModel(" Анастасия","Гончарова","Раскольников")
-    val semenov: ScoutListClassModel = ScoutListClassModel(" Александр","Семенов","якер")
-    val dmitrieva: ScoutListClassModel = ScoutListClassModel(" София ","Дмитриева","Хармонт")
+    val holov: ScoutListClassModel = ScoutListClassModel("Артём ","Хохлов","азан")
+    val konstantinov: ScoutListClassModel = ScoutListClassModel("Никита ","Константинов","Торн")
+    val eremina: ScoutListClassModel = ScoutListClassModel("Екатерина ","Еремина","хаммер")
+    val goncharova: ScoutListClassModel = ScoutListClassModel("Анастасия","Гончарова","Раскольников")
+    val semenov: ScoutListClassModel = ScoutListClassModel("Александр","Семенов","якер")
+    val dmitrieva: ScoutListClassModel = ScoutListClassModel("София ","Дмитриева","Хармонт")
 
     val scoutExampleList = mutableListOf<ScoutListClassModel>()
     scoutExampleList.add(smirnov)
@@ -89,10 +83,10 @@ fun managerScreen() {
                    modifier = Modifier
                        .fillMaxWidth()
                        .padding(16.dp),
-                   onClick = { /*TODO*/ },
+                   onClick = {navController.navigate("QrCodeScannerScreen") },
                    colors = ButtonDefaults.buttonColors(MySquadBlueColor)
                ) {
-                   Text(text = "Сканировать Qr")
+                   Text(text = "Скан Qr")
                }
 
            }
@@ -144,21 +138,24 @@ fun ScoutItem(model: ScoutListClassModel) {
             Text(
                 text = model.firstName,
                 fontSize = (20.sp),
-                color = Color.DarkGray
+                color = Color.DarkGray,
+                modifier = Modifier.padding(5.dp)
             )
         }
         Row() {
             Text(
                 text = model.lastName,
                 fontSize = (20.sp),
-                color = Color.DarkGray
+                color = Color.DarkGray,
+                modifier = Modifier.padding(5.dp)
             )
         }
         Row() {
             Text(
                 text = model.callSign,
                 fontSize = (20.sp),
-                color = Color.DarkGray
+                color = Color.DarkGray,
+                modifier = Modifier.padding(5.dp)
             )
         }
 

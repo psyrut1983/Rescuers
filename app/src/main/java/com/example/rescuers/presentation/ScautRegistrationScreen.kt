@@ -45,6 +45,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.rescuers.R
+import com.example.rescuers.presentation.theme.MySquadBlueColor
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Preview
