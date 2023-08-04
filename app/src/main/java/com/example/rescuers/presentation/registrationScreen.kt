@@ -13,12 +13,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.rescuers.presentation.theme.MySquadBlueColor
 
 @Composable
-fun mainScreen(navController: NavController){
+fun registrationScreen(navController: NavController){
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Text(text = "Это заглушка. Тут будет экран регистрации.", color = Color.Black)
     }
@@ -40,7 +42,7 @@ fun mainScreen(navController: NavController){
                 colors = ButtonDefaults.buttonColors(MySquadBlueColor),
                 onClick = { navController.navigate("ScautRegistrationScreen") })
             {
-                Text(text = "Я Волонтер")
+                Text(text = "Я доброволец")
             }
             Button(modifier = Modifier
                 .fillMaxWidth()

@@ -88,8 +88,8 @@ fun Navigation() {
         }
 
         // Главный экран
-        composable("main_screen") {
-           mainScreen(navController = navController)
+        composable("registrationScreen") {
+            registrationScreen(navController = navController)
 
         }
             // Экран волонтера

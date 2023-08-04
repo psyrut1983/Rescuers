@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Rescuers</string>
+    <string name="hello">Привет,</string>
+    <string name="createAccount">Создайте новый аккаунт</string>
+    <string name="welcome">С возвращением</string>
+    <string name="firstName">Имя</string>
+    <string name="lastName">Фамилия</string>
+    <string name="callSign">Позывной</string>
+
+
+
 </resources>
